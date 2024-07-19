@@ -6,15 +6,10 @@ on:
       environment:
         required: true
         type: string
-      ref:
-        required: true
-        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
-        uses: actions/checkout@v4.1.6
       - name: Deploy to ${{ inputs.environment }}
-        run: echo "Deploying to ${{ inputs.environment }}"
+        run: echo "Deploying to ${{ vars.v }}"
