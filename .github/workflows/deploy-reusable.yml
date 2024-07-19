@@ -19,3 +19,5 @@ jobs:
       - name: Print Environment Variable
         run: echo "Deploying to ${{ inputs.env }} environment ?"
 
+      - name: Print Environment Variable
+        run: echo "Deploying to ${{ vars.v }} environment ?"
