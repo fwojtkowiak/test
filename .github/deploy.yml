@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, linux, build]
+    runs-on: [ubuntu-latest]
     strategy:
       matrix:
         environment: [Development, Test, UAT, Production]
