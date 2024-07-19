@@ -14,18 +14,24 @@ jobs:
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       env: development
+    secrets:
+      s: ${{ secrets.s }}
 
   deploy-test:
     if: github.ref_name == 'test'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       env: test
+    secrets:
+      s: ${{ secrets.s }}
 
   deploy-uat:
     if: github.ref_name == 'uat'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       env: UAT
+    secrets:
+      s: ${{ secrets.s }}
 
   deploy-production:
     if: github.ref_name == 'production'
