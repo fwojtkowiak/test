@@ -9,7 +9,6 @@ on:
 
 jobs:
   deploy:
-    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,8 +17,3 @@ jobs:
       - name: Print Environment Variable
         run: echo "Deploying to ${{ inputs.env }} environment"
 
-      - name: Print Variable from vars.v
-        env:
-          DEPLOY_ENV: ${{ vars.v }}
-        run: |
-        echo "Value of vars.v: $DEPLOY_ENV"

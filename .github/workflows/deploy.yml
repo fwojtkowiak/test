@@ -34,4 +34,5 @@ jobs:
     steps:
       - name: run
         uses: ./.github/workflows/deploy-reusable.yml
-
+        with:
+          env: ${{vars.v}}
