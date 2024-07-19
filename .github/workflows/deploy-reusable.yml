@@ -10,10 +10,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: env
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy
-        run: echo "Deploying to ${{ vars.v }}"
+      - name: Print Environment Variable
+        run: echo "Deploying to ${{ inputs.env }} environment"
+
+      - name: Print Variable from vars.v
+        env:
+          DEPLOY_ENV: ${{ vars.v }}
+        run: echo "Value of vars.v: $DEPLOY_ENV"
