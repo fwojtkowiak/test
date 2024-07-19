@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    environment: env
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
