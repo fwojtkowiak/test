@@ -6,6 +6,8 @@ on:
       env:
         required: true
         type: string
+      secrets:
+        s: ${{ secrets.s }}
 
 jobs:
   deploy:
