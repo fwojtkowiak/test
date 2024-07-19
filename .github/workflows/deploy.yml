@@ -38,5 +38,4 @@ jobs:
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       env: production
-    secrets:
-      s: ${{ secrets.s }}
+    secrets: inherit
