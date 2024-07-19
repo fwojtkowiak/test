@@ -8,23 +8,38 @@ on:
       - uat
 
 jobs:
-  deploy:
+  deploy-development:
+    if: github.ref_name == 'development'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [Development, Test, UAT, Production]
-        ref: ['development', 'test', 'uat', 'production']
-        environment-lowercase: [development, test, uat, production]
     steps:
-      - name: Check out
-        uses: actions/checkout@v4.1.6
+      - name: Trigger reusable workflow for Development
+        uses: ./.github/workflows/deploy-reusable.yml
+        with:
+          environment: Development
 
-      - name: Set environment variables
-        run: |
-          echo "ENVIRONMENT=${{ matrix.environment }}" >> $GITHUB_ENV
-          echo "REF=${{ matrix.ref }}" >> $GITHUB_ENV
-          echo "ENVIRONMENT_LOWERCASE=${{ matrix.environment-lowercase }}" >> $GITHUB_ENV
+  deploy-test:
+    if: github.ref_name == 'test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reusable workflow for Test
+        uses: ./.github/workflows/deploy-reusable.yml
+        with:
+          environment: Test
 
-      - name: Deploy
-        if: ${{ github.ref_name == env.REF }}
-        run: echo "Deploying to ${{ env.ENVIRONMENT }}"
+  deploy-uat:
+    if: github.ref_name == 'uat'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reusable workflow for UAT
+        uses: ./.github/workflows/deploy-reusable.yml
+        with:
+          environment: UAT
+
+  deploy-production:
+    if: github.ref_name == 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reusable workflow for Production
+        uses: ./.github/workflows/deploy-reusable.yml
+        with:
+          environment: Production
