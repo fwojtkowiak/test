@@ -30,5 +30,6 @@ jobs:
   deploy-production:
     if: github.ref_name == 'production'
     environment: production
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/deploy-reusable.yml
 
