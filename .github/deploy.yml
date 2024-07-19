@@ -1,0 +1,24 @@
+# Controls when the action will run.
+on:
+  push:
+    branches:
+      - development
+      - production
+      - test
+      - uat
+
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        environment: [Development, Test, UAT, Production]
+        ref: ['development', 'test', 'uat', 'production']
+    environment: ${{ matrix.environment }}
+    concurrency: ${{ toLower(matrix.environment) }}_environment
+    if: ${{ contains(matrix.ref, github.ref_name) }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4.1.6
+      - run: |
+          echo "${{ matrix.environment }}"
