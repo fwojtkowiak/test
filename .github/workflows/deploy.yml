@@ -29,10 +29,6 @@ jobs:
 
   deploy-production:
     if: github.ref_name == 'production'
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - name: run
-        uses: ./.github/workflows/deploy-reusable
-        with:
-          env: ${{vars.v}}
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      env: production
