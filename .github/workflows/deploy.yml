@@ -29,6 +29,7 @@ jobs:
 
   deploy-production:
     if: github.ref_name == 'production'
+    environment: production
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       env: production
