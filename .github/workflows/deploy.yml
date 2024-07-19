@@ -14,11 +14,16 @@ jobs:
       matrix:
         environment: [Development, Test, UAT, Production]
         ref: ['development', 'test', 'uat', 'production']
-    environment: ${{ matrix.environment }}
-    concurrency: ${{ toLower(matrix.environment) }}_environment
-    if: ${{ contains(matrix.ref, github.ref_name) }}
+        environment-lowercase: [development, test, uat, production]
+    concurrency: ${{ matrix['environment-lowercase'] }}_environment
     steps:
-      - name: Check out
-        uses: actions/checkout@v4.1.6
-      - run: |
-          echo "${{ matrix.environment }}"
+      - name: Set environment name
+        id: set-env
+        run: echo "ref_name=${{ github.ref_name }}" >> $GITHUB_ENV
+
+      - name: Deploy
+        uses: ./.github/workflows/deploy-reusable.yml
+        with:
+          environment: ${{ matrix.environment }}
+          ref: ${{ matrix.ref }}
+        if: ${{ github.ref_name == matrix.ref }}
