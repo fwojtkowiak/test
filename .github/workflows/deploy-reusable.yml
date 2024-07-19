@@ -3,14 +3,14 @@ name: Deploy Reusable
 on:
   workflow_call:
     inputs:
-      environment:
+      env:
         required: true
         type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: environment
+    environment: env
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

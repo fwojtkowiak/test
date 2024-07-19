@@ -13,22 +13,22 @@ jobs:
     if: github.ref_name == 'development'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: development
+      env: development
 
   deploy-test:
     if: github.ref_name == 'test'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: test
+      env: test
 
   deploy-uat:
     if: github.ref_name == 'uat'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: UAT
+      env: UAT
 
   deploy-production:
     if: github.ref_name == 'production'
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: production
+      env: production
