@@ -21,3 +21,5 @@ jobs:
 
       - name: Print Environment Variable
         run: echo "Deploying to ${{ vars.v }} environment ?"
+      - name: Print Environment Secret
+        run: echo "Deploying to ${{ secrets.s }} environment ?"
