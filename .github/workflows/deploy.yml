@@ -11,28 +11,24 @@ on:
 jobs:
   deploy-development:
     if: github.ref_name == 'development'
-    environment: development
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: Development
+      environment: development
 
   deploy-test:
     if: github.ref_name == 'test'
-    environment: test
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: Test
+      environment: test
 
   deploy-uat:
     if: github.ref_name == 'uat'
-    environment: uat
     uses: ./.github/workflows/deploy-reusable.yml
     with:
       environment: UAT
 
   deploy-production:
     if: github.ref_name == 'production'
-    environment: production
     uses: ./.github/workflows/deploy-reusable.yml
     with:
-      environment: Production
+      environment: production
