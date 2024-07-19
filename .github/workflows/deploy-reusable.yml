@@ -20,4 +20,5 @@ jobs:
       - name: Print Variable from vars.v
         env:
           DEPLOY_ENV: ${{ vars.v }}
-        run: echo "Value of vars.v: $DEPLOY_ENV"
+        run: |
+        echo "Value of vars.v: $DEPLOY_ENV"
