@@ -11,5 +11,5 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to ${{ inputs.environment }}
+      - name: Deploy
         run: echo "Deploying to ${{ vars.v }}"
