@@ -6,8 +6,9 @@ on:
       env:
         required: true
         type: string
-      secrets:
-        s: ${{ secrets.s }}
+    secrets:
+      s:
+        required: true
 
 jobs:
   deploy:
@@ -25,12 +26,12 @@ jobs:
         run: echo "Deploying to ${{ vars.v }} environment ?"
       - name: Print Environment Secret
         run: |
-          echo Password is $PASSWORD
-          if [[ $PASSWORD == *"PROD"* ]]; then
+          echo Password is $password 
+          if [[ $password == *"PROD"* ]]; then
             echo "This is the PROD password!"
           else
             echo "This is NOT the PROD password!"
           fi
           echo ${{secrets.s}} | sed 's/./& /g'
         env:
-          PASSWORD: ${{ secrets.s }}
+          password: ${{ secrets.s }}
