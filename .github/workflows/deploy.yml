@@ -33,6 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run
-        uses: ./.github/workflows/deploy-reusable.yml
+        uses: ./.github/workflows/deploy-reusable
         with:
           env: ${{vars.v}}
