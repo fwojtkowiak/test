@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - development
+      - production
+      - test
+      - uat
+
+jobs:
+  deploy-development:
+    if: github.ref_name == 'development'
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      env: development
+
+  deploy-test:
+    if: github.ref_name == 'test'
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      env: test
+
+  deploy-uat:
+    if: github.ref_name == 'uat'
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      env: UAT
+
+  deploy-production:
+    if: github.ref_name == 'production'
+    uses: ./.github/workflows/deploy-reusable.yml
+    with:
+      env: production

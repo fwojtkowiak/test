@@ -1,0 +1,21 @@
+name: Deploy Reusable
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.env }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print Environment Variable
+        run: echo "Deploying to ${{ inputs.env }} environment ?"
+
