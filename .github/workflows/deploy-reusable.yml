@@ -17,5 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print Environment Variable
-        run: echo "Deploying to ${{ inputs.env }} environment"
+        run: echo "Deploying to ${{ inputs.env }} environment ?"
 
+      - name: Print Environment Variable
+        run: echo "Deploying to ${{ vars.v }} environment ?"
+      - name: Print Environment Secret
+        run: echo "Deploying to ${{ secrets.s }} environment ?"
