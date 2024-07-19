@@ -1,4 +1,7 @@
-# Controls when the action will run.
+# .github/workflows/deploy.yml
+
+name: Deploy
+
 on:
   push:
     branches:
@@ -12,6 +15,9 @@ jobs:
     if: github.ref_name == 'development'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Trigger reusable workflow for Development
         uses: ./.github/workflows/deploy-reusable.yml
         with:
@@ -21,6 +27,9 @@ jobs:
     if: github.ref_name == 'test'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Trigger reusable workflow for Test
         uses: ./.github/workflows/deploy-reusable.yml
         with:
@@ -30,6 +39,9 @@ jobs:
     if: github.ref_name == 'uat'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Trigger reusable workflow for UAT
         uses: ./.github/workflows/deploy-reusable.yml
         with:
@@ -39,6 +51,9 @@ jobs:
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Trigger reusable workflow for Production
         uses: ./.github/workflows/deploy-reusable.yml
         with:
