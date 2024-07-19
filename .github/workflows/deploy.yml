@@ -15,15 +15,16 @@ jobs:
         environment: [Development, Test, UAT, Production]
         ref: ['development', 'test', 'uat', 'production']
         environment-lowercase: [development, test, uat, production]
-    concurrency: ${{ matrix['environment-lowercase'] }}_environment
     steps:
-      - name: Set environment name
-        id: set-env
-        run: echo "ref_name=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Check out
+        uses: actions/checkout@v4.1.6
+
+      - name: Set environment variables
+        run: |
+          echo "ENVIRONMENT=${{ matrix.environment }}" >> $GITHUB_ENV
+          echo "REF=${{ matrix.ref }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT_LOWERCASE=${{ matrix.environment-lowercase }}" >> $GITHUB_ENV
 
       - name: Deploy
-        uses: ./.github/workflows/deploy-reusable.yml
-        with:
-          environment: ${{ matrix.environment }}
-          ref: ${{ matrix.ref }}
-        if: ${{ github.ref_name == matrix.ref }}
+        if: ${{ github.ref_name == env.REF }}
+        run: echo "Deploying to ${{ env.ENVIRONMENT }}"
